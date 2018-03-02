@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="/static/bootstrap.min.css" rel="stylesheet" media="screen">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Tehno vs Giga</title>
+</head>
+<body>
+<form method="POST">
+    <input name="text">
+    <input type="submit">
+</form>
+    <h2> Tehnomanija </h2>
+    <table title="Tehnomanija">
+        <tr> <th> Ime</th>  <th> Cena </th></tr>
+        {% for i in tehnomanija%}
+
+            <tr> <td> {{i['ime']}}</td> <td> {{i['cena']}}</td>  </tr>
+
+        {%endfor%}
+
+    </table>
+    <h2> Gigatron </h2>
+    <table title="Gigatron">
+        <tr> <th> Ime</th>  <th> Cena </th></tr>
+        {% for i in gigatron %}
+
+            <tr> <td> {{i['ime']}}</td> <td> {{i['cena']}}</td>  </tr>
+
+        {%endfor%}
+
+    </table>
+
+</body>
+</html>

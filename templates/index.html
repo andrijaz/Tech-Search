@@ -36,6 +36,14 @@
 	</form>
 </div>
 
+
+	<h2> Prikazujem sve {{ rec }} koje sam nasao</h2>
+	<div class = "container-fluid bg-2">
+		{%  for p in pretrage %}
+		<button type = "button" class='btn btn-primary btn-lg'> {{ p }} </button>
+
+		{% endfor %}
+	</div>
 <div class = "container-fluid bg-2">
 
 	<div class = "row">

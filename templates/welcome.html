@@ -1,16 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<link href="/static/bootstrap.min.css" rel="stylesheet" media="screen">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <h1> Welcome</h1>
+	<meta name = "viewport" content = "width=device-width, initial-scale = 1">
+    <title>Welcome</title>
+	<link href="/static/bootstrap.min.css" rel="stylesheet" media="screen">
+	
+	<style>
+	
+	.container-fluid{
+            background-color: #1abc9c;
+            color: #ffffff;
+			padding: 50px 50px 50px 50px;
+    }	
+		
+	</style>	
 </head>
+
 <body>
-<form method="POST">
-    <input name="text">
-    <input type="submit">
-</form>
+
+<div class = "container-fluid bg-1 text-center">
+    <h3> Welcome</h3>  
+	
+	<form method="POST">
+		<input name="text">
+		<input type='submit' id='submit' class='btn btn-primary btn-lg' value='submit'>
+	</form>
+</div>
 
 </body>
 </html>

@@ -1,36 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-<link href="/static/bootstrap.min.css" rel="stylesheet" media="screen">
-<head>
 
+<head>
     <meta charset="UTF-8">
-    <title>Tehno vs Giga</title>
+	<meta name = "viewport" content = "width=device-width, initial-scale = 1">
+    <title>Tehnomanija vs Gigatron</title>
+	<link href="/static/bootstrap.min.css" rel="stylesheet" media="screen">
+	
+	<style>
+	
+	.container-fluid {
+	   padding: 50px 50px 50px 50px;
+    }
+	
+	.bg-1 {
+		background-color: #1abc9c;
+        color: black;
+	}
+	
+	.bg-2 {
+        background-color: white;
+        color: black;
+    }
+		
+	</style>	
 </head>
 <body>
-<form method="POST">
-    <input name="text">
-    <input type="submit">
-</form>
-    <h2> Tehnomanija </h2>
-    <table title="Tehnomanija">
-        <tr> <th> Ime</th>  <th> Cena </th></tr>
-        {% for i in tehnomanija%}
 
-            <tr> <td> {{i['ime']}}</td> <td> {{i['cena']}}</td>  </tr>
+<div class = "container-fluid bg-1 text-center">
+    <h3> Welcome</h3>  
+	
+	<form method="POST">
+		<input name="text">
+		<input type='submit' id='submit' class='btn btn-primary btn-lg' value='submit'>
+	</form>
+</div>
 
-        {%endfor%}
+<div class = "container-fluid bg-2">
 
-    </table>
-    <h2> Gigatron </h2>
-    <table title="Gigatron">
-        <tr> <th> Ime</th>  <th> Cena </th></tr>
-        {% for i in gigatron %}
+	<div class = "row">
+		<div class = "col">
+			<h2> Tehnomanija </h2>
+			<table title="Tehnomanija" class = "table table-striped">
+				<tr> <th> Ime</th>  <th> Cena </th></tr>
+				{% for i in tehnomanija%}
+				<tr> <td> {{i['ime']}}</td> <td> {{i['cena']}}</td>  </tr>
+				{%endfor%}
+			</table>
+		</div>
 
-            <tr> <td> {{i['ime']}}</td> <td> {{i['cena']}}</td>  </tr>
-
-        {%endfor%}
-
-    </table>
-
+		<div class = "col">
+			<h2> Gigatron </h2>
+			<table title="Gigatron" class = "table table-striped">
+				<tr> <th> Ime</th>  <th> Cena </th></tr>
+				{% for i in gigatron %}
+				<tr> <td> {{i['ime']}}</td> <td> {{i['cena']}}</td>  </tr>
+				{%endfor%}
+			</table>
+		</div>
+	</div>
+</div>
 </body>
 </html>

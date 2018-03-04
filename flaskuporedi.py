@@ -14,7 +14,7 @@ def index():
 @app.route('/', methods=['POST'])
 def index_post():
     text = request.form['text']
-    proceseed_text = text.lower()
+    proceseed_text = text.lower().strip()
 
     uporedi.tehnomanija = []
     uporedi.gigatron = []
@@ -23,13 +23,17 @@ def index_post():
 
     if proceseed_text not in pretrage:
         pretrage.append(proceseed_text)
-    #else:
-     #   pretrage.pop(
-
-    gigatron = uporedi.gigatron
-    tehnomanija = uporedi.tehnomanija
-
-    return render_template("index.html", tehnomanija=tehnomanija, gigatron=gigatron, pretrage=pretrage, rec = proceseed_text)
+    #if (T in izabrane)
+    #   uporedi.tehnomanija = [], uporedi.get_tehnomanija(text), ime1 = t, firma1=t
+    #elif (G in izabrane)
+    #   uporedi.gigatron = [], uporedi.get_gigatron(text), ime1 = t, firma1=g
+    #
+    ime1 = "Tehnomanija"
+    ime2 = "Gigatron"
+    ime3 = "WinWin"
+    firma1 = uporedi.tehnomanija
+    firma2 = uporedi.gigatron
+    return render_template("index.html",ime1=ime1, ime2=ime2, firma1=firma1, firma2=firma2, pretrage=pretrage, rec = proceseed_text)
 if __name__ == '__main__':
     #app.debug = True
     app.run()

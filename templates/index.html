@@ -31,7 +31,7 @@
     <h3> Welcome</h3>  
 	
 	<form method="POST">
-		<input name="text">
+		<input name="text" id = "input_field">
 		<input type='submit' id='submit' class='btn btn-primary btn-lg' value='submit'>
 	</form>
 </div>
@@ -39,34 +39,45 @@
 
 	<h2> Prikazujem sve {{ rec }} koje sam nasao</h2>
 	<div class = "container-fluid bg-2">
-		{%  for p in pretrage %}
-		<button type = "button" class='btn btn-primary btn-lg'> {{ p }} </button>
 
+		{%  for p in pretrage %}
+			<button  id= "{{ p }}" onclick="btn_search(id)" class='btn btn-primary btn-lg' value= "{{ p }}" > {{ p }} </button>
 		{% endfor %}
+
 	</div>
 <div class = "container-fluid bg-2">
 
 	<div class = "row">
 		<div class = "col">
-			<h2> Tehnomanija </h2>
-			<table title="Tehnomanija" class = "table table-striped">
+			<h2> {{ ime1 }} </h2>
+			<table title="{{ ime1 }}" class = "table table-striped">
 				<tr> <th> Ime</th>  <th> Cena </th></tr>
-				{% for i in tehnomanija%}
+				{% for i in firma1 %}
 				<tr> <td> {{i['ime']}}</td> <td> {{i['cena']}}</td>  </tr>
 				{%endfor%}
 			</table>
 		</div>
 
 		<div class = "col">
-			<h2> Gigatron </h2>
-			<table title="Gigatron" class = "table table-striped">
+			<h2> {{ime2}} </h2>
+			<table title=" {{ime2}}" class = "table table-striped">
 				<tr> <th> Ime</th>  <th> Cena </th></tr>
-				{% for i in gigatron %}
+				{% for i in firma2 %}
 				<tr> <td> {{i['ime']}}</td> <td> {{i['cena']}}</td>  </tr>
 				{%endfor%}
 			</table>
 		</div>
 	</div>
 </div>
+
+<script>
+function btn_search(search_id) {
+
+    	document.getElementById("input_field").value = document.getElementById( search_id ).value;
+    	document.getElementById("submit").click()
+}
+
+</script>
+
 </body>
 </html>

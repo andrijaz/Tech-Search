@@ -6,7 +6,8 @@
 	<meta name = "viewport" content = "width=device-width, initial-scale = 1">
     <title>Welcome</title>
 	<link href="/static/bootstrap.min.css" rel="stylesheet" media="screen">
-	
+	<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
 	<style>
 	
 	.container-fluid{
@@ -25,9 +26,40 @@
 	
 	<form method="POST">
 		<input name="text">
-		<input type='submit' id='submit' class='btn btn-primary btn-lg' value='submit'>
+		<input type='submit' id='submit' class='btn btn-primary btn-lg' value='submit' onclick="alert_firme()">
+
+		<h1> Izbor sajtova za pretragu</h1>
+		<label class="container">Tehnomanija
+  			<input type="checkbox" checked="checked" name="tehnomanija">
+  			<span class="checkmark"></span>
+		</label>
+		<label class="container">Gigatron
+  			<input type="checkbox" checked="checked" name="gigatron">
+  			<span class="checkmark"></span>
+		</label>
+		<label class="container">WinWin
+  			<input type="checkbox" name="winwin">
+  			<span class="checkmark"></span>
+		</label>
 	</form>
 </div>
+<div>
+	<h1> {{poruka}}</h1>
+</div>
 
+<script type="text/javascript">
+function btn_search(search_id) {
+
+    	document.getElementById("input_field").value = document.getElementById( search_id ).value;
+    	document.getElementById("submit").click()
+}
+function alert_firme(){
+var numberOfChecked = $('input:checkbox:checked').length;
+if( numberOfChecked == 3 )
+	alert("Samo 2 firme mogu biti izabrane");
+elseif  (numberOfChecked == 1)
+	alert("Izaberi 2 firme");
+	}
+</script>
 </body>
 </html>

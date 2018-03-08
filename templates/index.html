@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
 	<meta name = "viewport" content = "width=device-width, initial-scale = 1">
-    <title>Tehnomanija vs Gigatron</title>
+    <title>Tech Search {{ime1}}-{{ime2}}</title>
 	<link href="/static/bootstrap.min.css" rel="stylesheet" media="screen">
-	
+	<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<style>
 	
 	.container-fluid {
@@ -22,6 +22,9 @@
         background-color: white;
         color: black;
     }
+    .table tbody tr:hover td, .table tbody tr:hover th {
+    background-color: #1abc9c;
+}
 		
 	</style>	
 </head>
@@ -32,12 +35,29 @@
 	
 	<form method="POST">
 		<input name="text" id = "input_field">
-		<input type='submit' id='submit' class='btn btn-primary btn-lg' value='submit'>
+		<input type='submit' id='submit' class='btn btn-primary btn-lg' value='submit' onclick="alert_firme()">
+	<h1> Izbor sajtova za pretragu</h1>
+		<label class="container">Tehnomanija
+  			<input type="checkbox" checked="checked" name="tehnomanija">
+  			<span class="checkmark"></span>
+		</label>
+		<label class="container">Gigatron
+  			<input type="checkbox" checked="checked" name="gigatron">
+  			<span class="checkmark"></span>
+		</label>
+		<label class="container">WinWin
+  			<input type="checkbox" name="winwin">
+  			<span class="checkmark"></span>
+		</label>
+
 	</form>
 </div>
 
 
-	<h2> Prikazujem sve {{ rec }} koje sam nasao</h2>
+
+
+
+	<h2> {{ rec }}</h2>
 	<div class = "container-fluid bg-2">
 
 		{%  for p in pretrage %}
@@ -50,32 +70,96 @@
 	<div class = "row">
 		<div class = "col">
 			<h2> {{ ime1 }} </h2>
-			<table title="{{ ime1 }}" class = "table table-striped">
-				<tr> <th> Ime</th>  <th> Cena </th></tr>
+			<table title="{{ ime1 }}" class = "table table-striped" id="myTableL">
+				<tr><th></th> <th onclick="sortTable(1, 'myTableL')"> Ime</th>  <th onclick="sortTable(2, 'myTableL')"> Cena </th></tr>
 				{% for i in firma1 %}
-				<tr> <td> {{i['ime']}}</td> <td> {{i['cena']}}</td>  </tr>
+
+				<tr> <td> <img src="{{i['slika']}}"  width="30" height="42">  </td>
+					<td> <a href="{{i['link']}}"> {{i['ime']}}</a></td>
+					<td> {{i['cena']}}</td>  </tr>
 				{%endfor%}
 			</table>
 		</div>
 
 		<div class = "col">
 			<h2> {{ime2}} </h2>
-			<table title=" {{ime2}}" class = "table table-striped">
-				<tr> <th> Ime</th>  <th> Cena </th></tr>
+			<table title=" {{ime2}}" class = "table table-striped" id="myTableR">
+				<tr><th></th> <th onclick="sortTable(1, 'myTableR')"> Ime</th>  <th onclick="sortTable(2, 'myTableR')"> Cena </th></tr>
+
 				{% for i in firma2 %}
-				<tr> <td> {{i['ime']}}</td> <td> {{i['cena']}}</td>  </tr>
+
+				<tr><td> <img src="{{i['slika']}}"  width="42" height="42">  </td>
+					<td> <a href="{{i['link']}}"> {{i['ime']}}</a></td>
+					<td> {{i['cena']}}</td>  </tr>
 				{%endfor%}
 			</table>
 		</div>
 	</div>
 </div>
 
-<script>
+<script type="text/javascript">
 function btn_search(search_id) {
 
     	document.getElementById("input_field").value = document.getElementById( search_id ).value;
     	document.getElementById("submit").click()
 }
+function alert_firme(){
+var numberOfChecked = $('input:checkbox:checked').length;
+if( numberOfChecked > 2 )
+	alert("Samo 2 firme mogu biti izabrane");
+elseif  (numberOfChecked == 1)
+	alert("Izaberi 2 firme");
+	}
+function sortTable(n, tableId) {
+  var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+  table = document.getElementById(tableId);
+  switching = true;
+
+  dir = "asc";
+
+  while (switching) {
+
+    switching = false;
+    rows = table.getElementsByTagName("TR");
+
+    for (i = 1; i < (rows.length - 1); i++) {
+
+      shouldSwitch = false;
+
+      x = rows[i].getElementsByTagName("TD")[n];
+      y = rows[i + 1].getElementsByTagName("TD")[n];
+
+      if (dir == "asc") {
+        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+
+          shouldSwitch= true;
+          break;
+        }
+      } else if (dir == "desc") {
+        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+
+          shouldSwitch= true;
+          break;
+        }
+      }
+    }
+    if (shouldSwitch) {
+
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+
+      switchcount ++;
+    } else {
+
+      if (switchcount == 0 && dir == "asc") {
+        dir = "desc";
+        switching = true;
+      }
+    }
+  }
+}
+
+
 
 </script>
 

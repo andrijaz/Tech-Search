@@ -25,7 +25,9 @@
     .table tbody tr:hover td, .table tbody tr:hover th {
     background-color: #1abc9c;
 }
-		
+
+
+
 	</style>	
 </head>
 <body>
@@ -38,15 +40,27 @@
 		<input type='submit' id='submit' class='btn btn-primary btn-lg' value='submit' onclick="alert_firme()">
 	<h1> Izbor sajtova za pretragu</h1>
 		<label class="container">Tehnomanija
-  			<input type="checkbox" checked="checked" name="tehnomanija">
-  			<span class="checkmark"></span>
+			{%if 't' in izabrane%}
+  				<input type="checkbox" checked="checked" name="tehnomanija">
+			{% else %}
+				<input type="checkbox"  name="tehnomanija">
+			{%endif%}
+			<span class="checkmark"></span>
 		</label>
 		<label class="container">Gigatron
-  			<input type="checkbox" checked="checked" name="gigatron">
+  			{%if 'g' in izabrane%}
+  				<input type="checkbox" checked="checked" name="gigatron">
+			{% else %}
+				<input type="checkbox"  name="gigatron">
+			{%endif%}
   			<span class="checkmark"></span>
 		</label>
 		<label class="container">WinWin
-  			<input type="checkbox" name="winwin">
+			{%if 'w' in izabrane%}
+  				<input type="checkbox" checked="checked" name="winwin">
+			{% else %}
+				<input type="checkbox"  name="winwin">
+			{%endif%}
   			<span class="checkmark"></span>
 		</label>
 
@@ -74,7 +88,7 @@
 				<tr><th></th> <th onclick="sortTable(1, 'myTableL')"> Ime</th>  <th onclick="sortTable(2, 'myTableL')"> Cena </th></tr>
 				{% for i in firma1 %}
 
-				<tr> <td> <img src="{{i['slika']}}"  width="30" height="42">  </td>
+				<tr> <td> <img src="{{i['slika']}}"  width="35" height="42">  </td>
 					<td> <a href="{{i['link']}}"> {{i['ime']}}</a></td>
 					<td> {{i['cena']}}</td>  </tr>
 				{%endfor%}

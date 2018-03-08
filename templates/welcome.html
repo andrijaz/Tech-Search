@@ -15,7 +15,9 @@
             color: #ffffff;
 			padding: 50px 50px 50px 50px;
     }	
-		
+
+
+
 	</style>	
 </head>
 
@@ -29,16 +31,29 @@
 		<input type='submit' id='submit' class='btn btn-primary btn-lg' value='submit' onclick="alert_firme()">
 
 		<h1> Izbor sajtova za pretragu</h1>
-		<label class="container">Tehnomanija
-  			<input type="checkbox" checked="checked" name="tehnomanija">
-  			<span class="checkmark"></span>
+			<label class="container">Tehnomanija
+				{%if 't' in izabrane%}
+  					<input type="checkbox" checked="checked" name="tehnomanija">
+				{% else %}
+					<input type="checkbox"  name="tehnomanija">
+				{%endif%}
+
+				<span class="checkmark"></span>
 		</label>
 		<label class="container">Gigatron
-  			<input type="checkbox" checked="checked" name="gigatron">
+  			{%if 'g' in izabrane%}
+  				<input type="checkbox" checked="checked" name="gigatron">
+			{% else %}
+				<input type="checkbox"  name="gigatron">
+			{%endif%}
   			<span class="checkmark"></span>
 		</label>
 		<label class="container">WinWin
-  			<input type="checkbox" name="winwin">
+			{%if 'w' in izabrane%}
+  				<input type="checkbox" checked="checked" name="winwin">
+			{% else %}
+				<input type="checkbox"  name="winwin">
+			{%endif%}
   			<span class="checkmark"></span>
 		</label>
 	</form>

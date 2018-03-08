@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
-# https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sort_table_desc
-# filter po ceni i ako i ma previse / premalo proizvoda nesto uraditi
+
 from flask import Flask, render_template, request
 import uporedi
 app = Flask(__name__)
 proceseed_text = ""
 pretrage = []
 
-nizu_izabrane = []
 @app.route("/")
 def index():
     return render_template("welcome.html")
@@ -19,17 +17,17 @@ def index_post():
     proceseed_text = text.lower().strip()
 
 
-    if len(proceseed_text)==0:
-        return render_template("welcome.html", poruka='Unesi pojam za pretragu')
     if request.form.get('tehnomanija'):
        izabrane.append('t')
     if request.form.get('gigatron'):
        izabrane.append('g')
     if request.form.get('winwin'):
        izabrane.append('w')
-    print(izabrane)
+    if len(proceseed_text) == 0:
+        return render_template("welcome.html", poruka='Unesi pojam za pretragu', izabrane=izabrane)
+
     if len(izabrane) != 2 :
-        return render_template("welcome.html", poruka='Izaberi 2 firme')
+        return render_template("welcome.html", poruka='Izaberi 2 firme', izabrane=izabrane)
     else:
         #poruka = 'Prikazujem sve ' + proceseed_text +' koje sam nasao'
 
@@ -43,8 +41,8 @@ def index_post():
 
             uporedi.winwin = []
             uporedi.get_winwin(proceseed_text)
-            ime1 = 'Win Win'
-            firma1 = uporedi.winwin
+            ime2 = 'Win Win'
+            firma2 = uporedi.winwin
         if 't' not in izabrane: #then winwin + giga
             uporedi.winwin = []
             uporedi.get_winwin(proceseed_text)
@@ -70,7 +68,7 @@ def index_post():
         return render_template("index.html",ime1=ime1, ime2=ime2,
                            firma1=firma1, firma2=firma2,
                            pretrage=pretrage,
-                           rec = proceseed_text)
+                           rec = proceseed_text, izabrane=izabrane)
 
 if __name__ == '__main__':
     #app.debug = True

@@ -45,17 +45,26 @@ def get_gigatron(fraza):
         gigatron.append({"ime": ime, "cena": cena,  "link":link, "slika":img_link})
 
 def get_winwin(fraza):
+    headers = {'user-agent': 'my-app/0.0.1'}
     link  = "http://www.winwin.rs/catalogsearch/result/index/?limit=28&mode=grid&q="
 
     fraza = fraza.replace(" ","+")
-    r = requests.get(link+fraza)
+
+    r = requests.get(link+fraza, headers=headers)
+
     link_text = r.text
     soup = BeautifulSoup(link_text, 'html.parser')
     for p in soup.find_all("li", class_="item"):
         ime = p.find("a", itemprop="name").text.strip()
-        cena = p.find("span", class_="price").text.strip()
-        print(ime, cena)
-        winwin.append({"ime":ime, "cena":cena})
+        if p.find("span", class_="price") is None:
+            continue
+        else:
+            cena = int(p.find("span", class_="price").text.strip().replace(".", "").strip(" din"))
+
+        link = p.find("a", class_="product-image").get("href")
+        img_link = p.find("img")['src']
+
+        winwin.append({"ime":ime, "cena":cena, "link":link, "slika":img_link})
 
 tehnomanija=[]
 gigatron = []

@@ -8,11 +8,10 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Montserrat">
 	<link href="/static/bootstrap.min.css" rel="stylesheet" media="screen">
 	<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="/static/bootstrap.bundle.min.js"></script>
 
 	<style>
-		body, html {
-			height: 100%;
-		}
+		
         .container-fluid {
 			position:relative;
             background: url("static/img/center-bg.png") no-repeat center center;
@@ -26,13 +25,25 @@
             color: #212121;	
 			font-family: 'Montserrat', serif;
 	    }
+		
 		.header-1{
 			font-family: 'Alfa Slab One',serif;
-			
 		}
 		
+		footer{
+			font-family: 'Montserrat', serif;
+			color: white;
+			padding-top: 30px;
+			padding-bottom: 20px;
+		}
 		
-	
+		a {
+			color: #A7CAE2;
+		}
+		a:hover {
+			color: #6AC0CD;
+		}
+		
 	</style>	
 </head>
 
@@ -42,7 +53,7 @@
     <h1 class = "header-1"> Simultana pretraga sajtova za tehniku </h1>  
 	
 	<form method="POST">
-		<span class = "websites">
+		<span class = "websites" data-trigger = "hover" data-content="Mozete izabrati samo dva sajta!" data-placement="bottom">
 		<label class = "mr-2">Tehnomanija
 			{%if 't' in izabrane%}
 			<input type="checkbox" checked="checked" name="tehnomanija" class = "checkbox">
@@ -68,27 +79,30 @@
 		</label>
 		</span>		
 		<input name="text" class = "mr-1"> 
-		<input type='submit' id='submit' class='btn btn-primary mb-3 mt-3' value='pretrazi ' onclick="alert_firme()">
-					
+		<input type='submit' id='submit' class='btn btn-primary mb-3 mt-3' value='pretrazi ' onclick="alert_firme()">			
 	</form>
 </div>
-<div>
-	<h1> {{poruka}}</h1>
-</div>
+<footer class = "footer bg-dark text-center">
+    <p class = "footer-content">
+        made by <a href="https://github.com/andrijaz">@andrijaz</a> and <a href = "https://github.com/soleova"> @soleova
+    </p> 
+</footer>
 
 <script type="text/javascript">
 function btn_search(search_id) {
 
     	document.getElementById("input_field").value = document.getElementById( search_id ).value;
-    	document.getElementById("submit").click()
+    	document.getElementById("submit").click();
 }
 function alert_firme(){
-var numberOfChecked = $('input:checkbox:checked').length;
-if( numberOfChecked == 3 )
-	alert("Samo 2 firme mogu biti izabrane");
-elseif  (numberOfChecked == 1)
-	alert("Izaberi 2 firme");
+	var numberOfChecked = $('input:checkbox:checked').length;
+	if( numberOfChecked == 3 || numberOfChecked == 1){
+			alert("Mozete izabrati samo 2 firme")
 	}
+}
+
+$(".websites").popover({ trigger: "hover" });
+
 </script>
 </body>
 </html>

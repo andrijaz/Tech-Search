@@ -8,6 +8,7 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Montserrat">
 	<link href="/static/bootstrap.min.css" rel="stylesheet" media="screen">
 	<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="/static/bootstrap.bundle.min.js"></script>
 	<style>
 	
         .bg-1 {
@@ -17,8 +18,8 @@
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
-			padding-top: 30px;
-			padding-bottom:30px;
+			padding-top: 40px;
+			padding-bottom: 40px;
 			padding-right: 50px;
             color: #212121;	
 			font-family: 'Montserrat', serif;
@@ -28,8 +29,8 @@
 		}
 		
 		.old-searches{
-			padding-top: 30px;
-			padding-bottom:30px;
+			padding-top: 50px;
+			padding-bottom: 50px;
 			font-family: 'Montserrat', serif;
 		}
 		
@@ -38,10 +39,21 @@
 		}
 		
 		.table tbody tr:hover td, .table tbody tr:hover th {
-			background-color: grey;
+			background-color: gray;
 			color:white;
 		}
 		
+		footer{
+			font-family: 'Montserrat', serif;
+			color: white;
+			padding-top: 30px;
+			padding-bottom: 20px;
+		}
+		
+		
+		a:hover {
+			color: #6AC0CD;
+		}
 		
 	</style>	
 </head>
@@ -51,27 +63,29 @@
     <h1 class = "header-1"> Simultana pretraga sajtova za tehniku </h1>  
 	
 	<form method="POST">
-		<label class="mr-2">Tehnomanija
-			{%if 't' in izabrane%}
-  				<input type="checkbox" checked="checked" name="tehnomanija">
-			{% else %}
-				<input type="checkbox"  name="tehnomanija">
-			{%endif%}
-		</label>
-		<label class="mr-2">Gigatron
-  			{%if 'g' in izabrane%}
-  				<input type="checkbox" checked="checked" name="gigatron">
-			{% else %}
-				<input type="checkbox"  name="gigatron">
-			{%endif%}
-		</label>
-		<label class="mr-3">WinWin
-			{%if 'w' in izabrane%}
-  				<input type="checkbox" checked="checked" name="winwin">
-			{% else %}
-				<input type="checkbox"  name="winwin">
-			{%endif%}
-		</label>
+		<span class = "websites" data-trigger = "hover" data-content="Mozete izabrati samo dva sajta!" data-placement="bottom">
+			<label class="mr-2">Tehnomanija
+				{%if 't' in izabrane%}
+					<input type="checkbox" checked="checked" name="tehnomanija">
+				{% else %}
+					<input type="checkbox"  name="tehnomanija">
+				{%endif%}
+			</label>
+			<label class="mr-2">Gigatron
+				{%if 'g' in izabrane%}
+					<input type="checkbox" checked="checked" name="gigatron">
+				{% else %}
+					<input type="checkbox"  name="gigatron">
+				{%endif%}
+			</label>
+			<label class="mr-3">WinWin
+				{%if 'w' in izabrane%}
+					<input type="checkbox" checked="checked" name="winwin">
+				{% else %}
+					<input type="checkbox"  name="winwin">
+				{%endif%}
+			</label>
+		</span>
 		
 		<input name="text" id = "input_field" class = "mr-1">
 		<input type='submit' id='submit' class='btn btn-primary btn' value='pretrazi' onclick="alert_firme()">
@@ -82,7 +96,7 @@
 	<div class = "container-fluid old-searches">
 
 		{%  for p in pretrage %}
-			<button  id= "{{ p }}" onclick="btn_search(id)" class='btn btn-outline-primary' value= "{{ p }}" > {{ p }} </button>
+			<button  id= "{{ p }}" onclick="btn_search(id)" class="btn btn-outline-info" value= "{{ p }}" data-trigger = "hover" data-content="Brza pretraga proizvoda {{ p }}" data-placement="bottom"> {{ p }} </button>
 		{% endfor %}
 
 	</div>
@@ -117,6 +131,11 @@
 		</div>
 	</div>
 </div>
+<footer class = "footer bg-dark text-center">
+    <p class = "footer-content">
+        made by <a href="https://github.com/andrijaz">@andrijaz</a> and <a href = "https://github.com/soleova"> @soleova
+    </p> 
+</footer>
 
 <script type="text/javascript">
 function btn_search(search_id) {
@@ -131,6 +150,7 @@ if( numberOfChecked > 2 )
 elseif  (numberOfChecked == 1)
 	alert("Izaberi 2 firme");
 	}
+	
 function sortTable(n, tableId) {
   var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
   table = document.getElementById(tableId);
@@ -180,9 +200,11 @@ function sortTable(n, tableId) {
   }
 }
 
-
+$(".btn-outline-info").popover({ trigger: "hover" });
+$(".websites").popover({ trigger: "hover" });
 
 </script>
 
+	
 </body>
 </html>

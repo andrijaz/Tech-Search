@@ -9,3 +9,6 @@ Python, Flask, Javascript, Bootstrap
 
 ## :exclamation: Dependencies
 You will need flask, requests, BeautifulSoup
+
+## :art: Design
+By [@soleova](https://github.com/soleova)

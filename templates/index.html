@@ -4,86 +4,93 @@
 <head>
     <meta charset="UTF-8">
 	<meta name = "viewport" content = "width=device-width, initial-scale = 1">
-    <title>Tech Search {{ime1}}-{{ime2}}</title>
+    <title>Pretraga tehnike | {{ime1}}-{{ime2}}</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Montserrat">
 	<link href="/static/bootstrap.min.css" rel="stylesheet" media="screen">
 	<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 	<style>
 	
-	.container-fluid {
-	   padding: 50px 50px 50px 50px;
-    }
-	
-	.bg-1 {
-		background-color: #1abc9c;
-        color: black;
-	}
-	
-	.bg-2 {
-        background-color: white;
-        color: black;
-    }
-    .table tbody tr:hover td, .table tbody tr:hover th {
-    background-color: #1abc9c;
-}
-
-
-
+        .bg-1 {
+			position:relative;
+            background: url("static/img/center-bg.png") no-repeat center center;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+			padding-top: 30px;
+			padding-bottom:30px;
+			padding-right: 50px;
+            color: #212121;	
+			font-family: 'Montserrat', serif;
+	    }
+		.header-1{
+			font-family: 'Alfa Slab One',serif;
+		}
+		
+		.old-searches{
+			padding-top: 30px;
+			padding-bottom:30px;
+			font-family: 'Montserrat', serif;
+		}
+		
+		.results{
+			font-family: 'Montserrat', serif;
+		}
+		
+		.table tbody tr:hover td, .table tbody tr:hover th {
+			background-color: grey;
+			color:white;
+		}
+		
+		
 	</style>	
 </head>
 <body>
 
-<div class = "container-fluid bg-1 text-center">
-    <h3> Welcome</h3>  
+<div class = "container-fluid bg-1 text-right">
+    <h1 class = "header-1"> Simultana pretraga sajtova za tehniku </h1>  
 	
 	<form method="POST">
-		<input name="text" id = "input_field">
-		<input type='submit' id='submit' class='btn btn-primary btn-lg' value='submit' onclick="alert_firme()">
-	<h1> Izbor sajtova za pretragu</h1>
-		<label class="container">Tehnomanija
+		<label class="mr-2">Tehnomanija
 			{%if 't' in izabrane%}
   				<input type="checkbox" checked="checked" name="tehnomanija">
 			{% else %}
 				<input type="checkbox"  name="tehnomanija">
 			{%endif%}
-			<span class="checkmark"></span>
 		</label>
-		<label class="container">Gigatron
+		<label class="mr-2">Gigatron
   			{%if 'g' in izabrane%}
   				<input type="checkbox" checked="checked" name="gigatron">
 			{% else %}
 				<input type="checkbox"  name="gigatron">
 			{%endif%}
-  			<span class="checkmark"></span>
 		</label>
-		<label class="container">WinWin
+		<label class="mr-3">WinWin
 			{%if 'w' in izabrane%}
   				<input type="checkbox" checked="checked" name="winwin">
 			{% else %}
 				<input type="checkbox"  name="winwin">
 			{%endif%}
-  			<span class="checkmark"></span>
 		</label>
+		
+		<input name="text" id = "input_field" class = "mr-1">
+		<input type='submit' id='submit' class='btn btn-primary btn' value='pretrazi' onclick="alert_firme()">
 
 	</form>
 </div>
 
-
-
-
-
-	<h2> {{ rec }}</h2>
-	<div class = "container-fluid bg-2">
+	<div class = "container-fluid old-searches">
 
 		{%  for p in pretrage %}
-			<button  id= "{{ p }}" onclick="btn_search(id)" class='btn btn-primary btn-lg' value= "{{ p }}" > {{ p }} </button>
+			<button  id= "{{ p }}" onclick="btn_search(id)" class='btn btn-outline-primary' value= "{{ p }}" > {{ p }} </button>
 		{% endfor %}
 
 	</div>
-<div class = "container-fluid bg-2">
-
+<div class = "container-fluid results">
+<h5 class = "font-italic"> Prikazani su rezultati za <span class = "font-weight-bold">{{ rec }}</span></h5>
 	<div class = "row">
 		<div class = "col">
-			<h2> {{ ime1 }} </h2>
+			<h2 class = "text-uppercase font-weight-bold"> {{ ime1 }} </h2>
 			<table title="{{ ime1 }}" class = "table table-striped" id="myTableL">
 				<tr><th></th> <th onclick="sortTable(1, 'myTableL')"> Ime</th>  <th onclick="sortTable(2, 'myTableL')"> Cena </th></tr>
 				{% for i in firma1 %}
@@ -96,7 +103,7 @@
 		</div>
 
 		<div class = "col">
-			<h2> {{ime2}} </h2>
+			<h2 class = "text-uppercase font-weight-bold"> {{ime2}} </h2>
 			<table title=" {{ime2}}" class = "table table-striped" id="myTableR">
 				<tr><th></th> <th onclick="sortTable(1, 'myTableR')"> Ime</th>  <th onclick="sortTable(2, 'myTableR')"> Cena </th></tr>
 

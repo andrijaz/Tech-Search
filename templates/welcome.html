@@ -4,58 +4,72 @@
 <head>
     <meta charset="UTF-8">
 	<meta name = "viewport" content = "width=device-width, initial-scale = 1">
-    <title>Welcome</title>
+    <title>Pretraga tehnike </title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Montserrat">
 	<link href="/static/bootstrap.min.css" rel="stylesheet" media="screen">
 	<script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
 
 	<style>
+		body, html {
+			height: 100%;
+		}
+        .container-fluid {
+			position:relative;
+            background: url("static/img/center-bg.png") no-repeat center center;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            padding-top: 230px;
+            padding-bottom: 280px;
+			padding-right: 50px;
+            color: #212121;	
+			font-family: 'Montserrat', serif;
+	    }
+		.header-1{
+			font-family: 'Alfa Slab One',serif;
+			
+		}
+		
+		
 	
-	.container-fluid{
-            background-color: #1abc9c;
-            color: #ffffff;
-			padding: 50px 50px 50px 50px;
-    }	
-
-
-
 	</style>	
 </head>
 
 <body>
 
-<div class = "container-fluid bg-1 text-center">
-    <h3> Welcome</h3>  
+<div class = "container-fluid bg-1 text-right">
+    <h1 class = "header-1"> Simultana pretraga sajtova za tehniku </h1>  
 	
 	<form method="POST">
-		<input name="text">
-		<input type='submit' id='submit' class='btn btn-primary btn-lg' value='submit' onclick="alert_firme()">
-
-		<h1> Izbor sajtova za pretragu</h1>
-			<label class="container">Tehnomanija
-				{%if 't' in izabrane%}
-  					<input type="checkbox" checked="checked" name="tehnomanija">
-				{% else %}
-					<input type="checkbox"  name="tehnomanija">
-				{%endif%}
-
-				<span class="checkmark"></span>
-		</label>
-		<label class="container">Gigatron
-  			{%if 'g' in izabrane%}
-  				<input type="checkbox" checked="checked" name="gigatron">
+		<span class = "websites">
+		<label class = "mr-2">Tehnomanija
+			{%if 't' in izabrane%}
+			<input type="checkbox" checked="checked" name="tehnomanija" class = "checkbox">
 			{% else %}
-				<input type="checkbox"  name="gigatron">
+			<input type="checkbox"  name="tehnomanija">
 			{%endif%}
-  			<span class="checkmark"></span>
 		</label>
-		<label class="container">WinWin
+		
+		<label class = "mr-2">Gigatron
+			{%if 'g' in izabrane%}
+			<input type="checkbox" checked="checked" name="gigatron">
+			{% else %}
+			<input type="checkbox"  name="gigatron">
+			{%endif%} 
+		</label>
+		
+		<label class = "mr-3" >WinWin
 			{%if 'w' in izabrane%}
-  				<input type="checkbox" checked="checked" name="winwin">
+			<input type="checkbox" checked="checked" name="winwin">
 			{% else %}
-				<input type="checkbox"  name="winwin">
+			<input type="checkbox"  name="winwin">
 			{%endif%}
-  			<span class="checkmark"></span>
 		</label>
+		</span>		
+		<input name="text" class = "mr-1"> 
+		<input type='submit' id='submit' class='btn btn-primary mb-3 mt-3' value='pretrazi ' onclick="alert_firme()">
+					
 	</form>
 </div>
 <div>

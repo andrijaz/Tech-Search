@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from flask import Flask, render_template, request
-import uporedi
+import logic
 app = Flask(__name__)
 proceseed_text = ""
 pretrage = []
